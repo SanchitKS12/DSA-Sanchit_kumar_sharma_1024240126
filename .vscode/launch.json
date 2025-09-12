@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Sanchit/OneDrive/Documents/GitHub/DSA-Sanchit/ASSINGMENT_1",
-      "program": "c:/Users/Sanchit/OneDrive/Documents/GitHub/DSA-Sanchit/ASSINGMENT_1/build/Debug/outDebug",
+      "cwd": "c:/Users/Sanchit/OneDrive/Documents/GitHub/DSA-Sanchit/ASSINGMENT_5/ASSINGMENT_5_LAB",
+      "program": "c:/Users/Sanchit/OneDrive/Documents/GitHub/DSA-Sanchit/ASSINGMENT_5/ASSINGMENT_5_LAB/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
