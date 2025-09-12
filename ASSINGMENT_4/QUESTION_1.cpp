@@ -64,7 +64,7 @@ int main() {
             case 2: q.dequeue(); break;
             case 3: q.peek(); break;
             case 4: q.display(); break;
-            case 5: cout << "Exiting...\n"; break;
+            case 5: cout << "Exiting choice\n"; break;
             default: cout << "Invalid choice\n";
         }
     } while (choice != 5);
