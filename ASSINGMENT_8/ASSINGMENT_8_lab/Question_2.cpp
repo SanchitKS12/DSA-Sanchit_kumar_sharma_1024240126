@@ -69,3 +69,19 @@ Node* FindMin(Node* root){
     }
     return root;
 }
+
+int main(){
+    int x;
+    int key;
+    cout << "Enter total value :";
+    cin >> x;
+    Node* root=nullptr;
+    int arr[x];
+    cout << "Enter Node Value :" << endl;
+    for(int  i=0; i<x; i++){
+        root=insert(root,arr[i]);
+    }
+    cout<<"Enter the value to search :"<<endl;
+    cin >> key; 
+    return 0;
+}
