@@ -49,3 +49,8 @@ void inorderTransversal(Node* root){
     inorderTransversal(root->right);
 
 }
+
+int main(){
+    cout<<"please enter the root value :"<< endl
+    return 0;
+}
