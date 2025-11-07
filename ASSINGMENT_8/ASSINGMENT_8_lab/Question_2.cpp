@@ -50,4 +50,22 @@ Node* Search2(Node* root, int key){
     return 0;
 }
 
-//
+Node* FindMax(Node* root){
+    if(root == nullptr){
+        return nullptr;
+    }
+    while(root->right != nullptr){
+        root=root->right;
+    }
+    return root;
+}
+
+Node* FindMin(Node* root){
+    if(root ==nullptr){
+        return nullptr;
+    }
+    while(root->left != nullptr){
+        root=root->left;
+    }
+    return root;
+}
