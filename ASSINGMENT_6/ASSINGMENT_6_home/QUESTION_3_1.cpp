@@ -20,7 +20,7 @@ public:
     }
 };
 
-Node* convertArrToDLL(char arr[], int n) {
+Node* convertArrToDLL(int arr[], int n) {
     Node* head = new Node(arr[0]);
     Node* back = head;
     for (int i = 1; i < n; i++) {
@@ -40,29 +40,20 @@ void print(Node* head) {
     cout << endl;
 }
 
-bool isPalindrome(Node* head) {
-    if (head == NULL || head->next == NULL)
-        return true;
-
-    Node* left = head;
-    Node* right = head;
-
-    while (right->next != NULL)
-        right = right->next;
-
-    while (left != right && right->next != left) {
-        if (left->data != right->data)
-            return false;
-        left = left->next;
-        right = right->prev;
+int count(Node* head){
+    Node* temp = head;
+    int cnt = 0;
+    while(temp != NULL){
+        cnt++;
+        temp = temp->next;
     }
-    return true;
+    return cnt;
 }
 
 int main() {
-    char arr[] = {'L', 'E', 'V', 'E', 'L'};
-    Node* head = convertArrToDLL(arr, 5);
+    int arr[] = {10, 20, 30, 40, 50, 60, 70};
+    Node* head = convertArrToDLL(arr, 7);
     print(head);
-    cout << (isPalindrome(head) ? "Is Palindrome" : "Not a Palindrome");
+    cout << "size = " << count(head);
     return 0;
 }

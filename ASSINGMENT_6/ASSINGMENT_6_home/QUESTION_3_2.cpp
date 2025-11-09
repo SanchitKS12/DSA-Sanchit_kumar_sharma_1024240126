@@ -37,21 +37,24 @@ void print(Node* head) {
     cout << head->data << endl;  
 }
 
-bool isCircular(Node* head) {
-    if (head == NULL) 
-        return true; 
-
-    Node* temp = head->next;
-    while (temp != NULL && temp != head)
+int count(Node* head) {
+    int cnt = 0;
+    if (head == NULL) {
+        cout << "List is Empty\n";
+        return cnt;
+    }
+    Node* temp = head;
+    do {
+        cnt++;
         temp = temp->next;
-    return (temp == head);
+    } while (temp != head);
+    return cnt;  
 }
-
 
 int main() {
     int arr[] = {20, 100, 40, 80, 60};
     Node* head = convertArrToCLL(arr, 5);
     print(head);
-    cout << (isCircular(head) ? "Is Circular" : "Not Circular");
+    cout << "size = " << count(head);
     return 0;
 }
