@@ -33,6 +33,23 @@ void postorder(int tree[], int index, int n){
     cout<<tree[index]<< " ";
 }
 
+int searchRecursive(int tree[], int index, int n, int key) {
+    if (index >= n || tree[index] == -1){
+        return -1;
+    } 
+
+    if (tree[index] == key){
+        return index;   
+    }
+
+    if (key < tree[index]){
+        return searchRecursive(tree, 2 * index + 1, n, key);   
+    }
+
+    return searchRecursive(tree, 2 * index + 2, n, key);       
+}
+
+
 int main(){
     int tree[MAX];
     int n;
@@ -40,7 +57,7 @@ int main(){
     cout << "Enter number of nodes in the binary tree: ";
     cin >> n;
 
-    cout<<"use -1 for empty node";
+    cout<<"use -1 for empty node"<< endl;
     cout<< "Enter the elements :"<< endl;
     for(int i=0; i<=n; i++){
         cin>>tree[i];
@@ -58,5 +75,17 @@ int main(){
     cout<<"Postorder transversal :";
     postorder(tree,0,n);
     cout<<endl;
-    
+
+    int key,r1;
+    cout<<"Enter key to be searched : ";
+    cin>>key;
+
+    r1=searchRecursive(tree,0,n,key);
+
+    if(r1==-1){
+        cout<<"Key not found in the tree"<<endl;
+    }
+    else{
+        cout<<"Key found in the tree at the index :"<< r1 <<endl;
+    }
 }
