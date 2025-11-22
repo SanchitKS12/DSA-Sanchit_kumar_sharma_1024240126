@@ -1,91 +1,134 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-#define MAX 100
+#define MAXLEN 100
+int binaryTree[MAXLEN];
 
-void preorder(int tree[], int index, int n){
-    if(index>=n || tree[index]==-1){
-        return;
-    }
-    
-    cout<<tree[index]<<" ";
-    preorder(tree, 2*index+1, n);   //Left subtree
-    preorder(tree, 2*index+2, n);   //Right subtree
-}
-
-void inorder(int tree[], int index, int n){
-    if(index>=n || tree[index]==-1){
-        return;
+class BinaryTree{
+    public:
+    BinaryTree(){
+        for(int i=0; i<MAXLEN; i++){
+            binaryTree[i] = -1;
+        }
     }
 
-    inorder(tree, 2*index+1, n);
-    cout<<tree[index]<< " ";
-    inorder(tree, 2*index+2, n);
-}
-
-void postorder(int tree[], int index, int n){
-    if(index>=n || tree[index]==-1){
-        return;
+    void insertRoot(int val){
+        binaryTree[1] = val;
     }
 
-    postorder(tree, 2*index+1, n);
-    postorder(tree, 2*index+2, n);
-    cout<<tree[index]<< " ";
-}
-
-int searchRecursive(int tree[], int index, int n, int key) {
-    if (index >= n || tree[index] == -1){
-        return -1;
-    } 
-
-    if (tree[index] == key){
-        return index;   
+    void insertLeftNode(int indexP, int val){
+        int left = 2 * indexP;
+        if(left < MAXLEN){
+            binaryTree[left] = val;
+        }
+        else{
+            cout << "Out of range" << endl;
+        }
     }
 
-    if (key < tree[index]){
-        return searchRecursive(tree, 2 * index + 1, n, key);   
+    void insertRightNode(int indexP, int val){
+        int right = (2 * indexP) + 1;
+        if(right < MAXLEN){
+            binaryTree[right] = val;
+        }
+        else{
+            cout << "Out of range" << endl;
+        }
     }
 
-    return searchRecursive(tree, 2 * index + 2, n, key);       
-}
+    void preOrder(int index = 1){
+        if((index >= MAXLEN) || (binaryTree[index] == -1)){
+            return;
+        }
+        cout << binaryTree[index] << " ";
+        preOrder(2*index);
+        preOrder((2*index)+1);
+    }
 
+    void inOrder(int index = 1){
+        if((index >= MAXLEN) || (binaryTree[index] == -1)){
+            return;
+        }
+        inOrder(2*index);
+        cout << binaryTree[index] << " ";
+        inOrder((2*index)+1);
+    }
+
+    void postOrder(int index = 1){
+        if((index >= MAXLEN) || (binaryTree[index] == -1)){
+            return;
+        }
+        postOrder(2*index);
+        postOrder((2*index)+1);
+        cout << binaryTree[index] << " ";
+    }
+};
 
 int main(){
-    int tree[MAX];
-    int n;
-
-    cout << "Enter number of nodes in the binary tree: ";
-    cin >> n;
-
-    cout<<"use -1 for empty node"<< endl;
-    cout<< "Enter the elements :"<< endl;
-    for(int i=0; i<=n; i++){
-        cin>>tree[i];
+    BinaryTree bt;
+    int choice;
+    do{
+        cout << endl << "Enter:" << endl <<
+        "1 to insert root" << endl <<
+        "2 to insert at left" << endl <<
+        "3 to insert at right" << endl <<
+        "4 for preorder traversal" << endl <<
+        "5 for inorder traversal" << endl <<
+        "6 for postorder traversal" << endl <<
+        "7 to exit" << endl;
+        cin >> choice;
+        switch(choice){
+            case 1:{
+                int rootValue;
+                cout << "Enter value of root : ";
+                cin >> rootValue;
+                bt.insertRoot(rootValue);
+                break;
+            }
+            case 2:{
+                int parentIndex;
+                cout << "Enter parent index : ";
+                cin >> parentIndex;
+                int leftValue;
+                cout << "Enter value of left node : ";
+                cin >> leftValue;
+                bt.insertLeftNode(parentIndex, leftValue);
+                break;
+            }
+            case 3:{
+                int parentIndex;
+                cout << "Enter parent index : ";
+                cin >> parentIndex;
+                int rightValue;
+                cout << "Enter value of right node : ";
+                cin >> rightValue;
+                bt.insertRightNode(parentIndex, rightValue);
+                break;
+            }
+            case 4:{
+                cout << "PreOrder Traversal : ";
+                bt.preOrder();
+                break;
+            }
+            case 5:{
+                cout << "InOrder Traversal : ";
+                bt.inOrder();
+                break;
+            }
+            case 6:{
+                cout << "PostOrder Traversal : ";
+                bt.postOrder();
+                break;
+            }
+            case 7:{
+                cout << "Exiting..." << endl;
+                break;
+            }
+            default:{
+                cout << "Invalid choice" << endl;
+            }
+        }
     }
-    cout<<endl;
-
-    cout<<"Preorder transversal :";
-    preorder(tree,0,n);
-    cout<<endl;
-
-    cout<<"Inorder transversal :";
-    inorder(tree,0,n);
-    cout<<endl;
-
-    cout<<"Postorder transversal :";
-    postorder(tree,0,n);
-    cout<<endl;
-
-    int key,r1;
-    cout<<"Enter key to be searched : ";
-    cin>>key;
-
-    r1=searchRecursive(tree,0,n,key);
-
-    if(r1==-1){
-        cout<<"Key not found in the tree"<<endl;
-    }
-    else{
-        cout<<"Key found in the tree at the index :"<< r1 <<endl;
-    }
+    while(choice != 7);
+    return 0;
 }
